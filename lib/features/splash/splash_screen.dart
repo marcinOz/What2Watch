@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:what_to_watch_flutter/features/splash/splash_bloc.dart';
 import 'package:what_to_watch_flutter/generated/i18n.dart';
-import 'package:what_to_watch_flutter/routes/router.gr.dart';
+import 'package:what_to_watch_flutter/injection/injection.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  SplashBloc _splashBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _splashBloc = SplashBloc(getIt.get());
+    _splashBloc.add(SplashEvent.init());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,12 +25,13 @@ class SplashScreen extends StatelessWidget {
         title: Text(S.of(context).appName),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text("Go Home"),
-          onPressed: () =>
-              Router.navigator.pushReplacementNamed(Router.homeScreen),
-        ),
-      ),
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(S.of(context).appName),
+          Icon(Icons.remove_red_eye)
+        ],
+      )),
     );
   }
 }

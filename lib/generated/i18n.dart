@@ -22,6 +22,17 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get appName => "What2Watch";
+  String get cancelledByUser => "Sign in Cancelled By User.";
+  String get email => "email";
+  String get emailAlreadyInUse => "Email is already in use.";
+  String get invalidEmailAndPassCombination => "Invalid email and password combination.";
+  String get noInternetConnection => "No internet connection.";
+  String get ok => "OK";
+  String get password => "password";
+  String get serverError => "Server Error.";
+  String get signIn => "SignIn";
+  String get somethingWentWrong => "Something went wrong.";
+  String get tooManyRequests => "Too many requests.";
 }
 
 class $en extends S {

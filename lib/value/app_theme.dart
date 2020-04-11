@@ -6,11 +6,11 @@ class AppTheme {
       ThemeData(primarySwatch: Colors.deepPurple, textTheme: _textTheme);
 
   static final _textTheme = TextTheme(
-    headline6: _titleTextStyle,
-    subtitle2: _subtitleTextStyle,
-    bodyText2: _bodyTextStyle,
+    title: _titleTextStyle,
+    subtitle: _subtitleTextStyle,
+    body1: _bodyTextStyle,
     button: _buttonTextStyle,
-    bodyText1: _body2TextStyle,
+    body2: _body2TextStyle,
   );
 
   static final _titleTextStyle = TextStyle(

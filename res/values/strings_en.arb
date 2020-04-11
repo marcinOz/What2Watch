@@ -1,3 +1,14 @@
 {
-  "appName": "What2Watch"
+  "appName": "What2Watch",
+  "ok": "OK",
+  "signIn": "SignIn",
+  "password": "password",
+  "email": "email",
+  "somethingWentWrong": "Something went wrong.",
+  "cancelledByUser": "Sign in Cancelled By User.",
+  "serverError": "Server Error.",
+  "emailAlreadyInUse": "Email is already in use.",
+  "invalidEmailAndPassCombination": "Invalid email and password combination.",
+  "noInternetConnection": "No internet connection.",
+  "tooManyRequests": "Too many requests."
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:what_to_watch_flutter/features/home/home_bloc.dart';
 import 'package:what_to_watch_flutter/generated/i18n.dart';
+import 'package:what_to_watch_flutter/injection/injection.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -9,7 +11,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeBloc _homeBloc;
   int _counter = 0;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _homeBloc = HomeBloc(getIt.get());
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -21,6 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () => _homeBloc.add(SignOut()),
+          )
+        ],
         title: Text(S.of(context).appName),
       ),
       body: Center(
@@ -34,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.body1,
             ),
           ],
         ),

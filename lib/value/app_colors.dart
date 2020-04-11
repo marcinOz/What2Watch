@@ -11,8 +11,8 @@ class AppColors {
   static const Color semiTransparentBlack = Color(0x33000000);
   static const Color white = Color(0xFFFFFFFF);
 
-  static const Color persimmon = Color(0xFFFF5656);
-  static const Color bitterSweet = Color(0xFFFF7A69);
+  static const Color primary = Color(0xFFB736FF);
+  static const Color primaryLight = Color(0xFFCF65FF);
   static const Color salmon = Color(0xFFFF8862);
   static const Color texasRose = Color(0xFFFEBB58);
 }
