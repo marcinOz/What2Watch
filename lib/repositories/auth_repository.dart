@@ -4,8 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:what_to_watch_flutter/data/auth/user.dart';
 import 'package:what_to_watch_flutter/data/errors/app_error.dart';
-import 'package:what_to_watch_flutter/data/user.dart';
 import 'package:what_to_watch_flutter/injection/injection.dart';
 
 abstract class AuthRepository {

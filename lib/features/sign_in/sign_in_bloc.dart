@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:what_to_watch_flutter/data/email.dart';
+import 'package:what_to_watch_flutter/data/auth/email.dart';
+import 'package:what_to_watch_flutter/data/auth/password.dart';
 import 'package:what_to_watch_flutter/data/errors/app_error.dart';
-import 'package:what_to_watch_flutter/data/password.dart';
 import 'package:what_to_watch_flutter/repositories/auth_repository.dart';
 import 'package:what_to_watch_flutter/routes/router.gr.dart';
 

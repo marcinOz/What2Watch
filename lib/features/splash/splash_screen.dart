@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _splashBloc = SplashBloc(getIt.get());
+    _splashBloc = SplashBloc(getIt.get(), getIt.get());
     _splashBloc.add(SplashEvent.init());
   }
 

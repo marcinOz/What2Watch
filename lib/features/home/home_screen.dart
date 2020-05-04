@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:what_to_watch_flutter/data/images/images_config_data_store.dart';
 import 'package:what_to_watch_flutter/features/home/home_bloc.dart';
+import 'package:what_to_watch_flutter/features/home/movie_grid_tile.dart';
 import 'package:what_to_watch_flutter/generated/i18n.dart';
 import 'package:what_to_watch_flutter/injection/injection.dart';
 
@@ -12,19 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeBloc _homeBloc;
-  int _counter = 0;
-
+  ImagesConfigDataStore _imagesConfigDataStore;
 
   @override
   void initState() {
     super.initState();
-    _homeBloc = HomeBloc(getIt.get());
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    _imagesConfigDataStore = getIt.get();
+    _homeBloc = HomeBloc(getIt.get(), getIt.get());
+    _homeBloc.add(BlocEvent.onInit());
   }
 
   @override
@@ -39,27 +37,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         title: Text(S.of(context).appName),
       ),
-      body: Center(
-        child: Column(
-          //
-          //
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.body1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      body: _getBody(context),
     );
   }
+
+  Widget _getBody(BuildContext context) => BlocBuilder<HomeBloc, BlocState>(
+        bloc: _homeBloc,
+        builder: (context, state) => Center(
+          child: Stack(
+            children: <Widget>[
+              if (state.movies.length > 0)
+                GridView.builder(
+                  itemCount: state.movies.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 11 / 19,
+                  ),
+                  itemBuilder: (context, index) => MovieGridTile(
+                    posterUrl: _imagesConfigDataStore
+                        .getPosterUrl(state.movies[index].posterPath),
+                    title: state.movies[index].title,
+                  ),
+                ),
+              if (state.isLoading) Center(child: CircularProgressIndicator()),
+            ],
+          ),
+        ),
+      );
 }

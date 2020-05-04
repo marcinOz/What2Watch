@@ -4,12 +4,12 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:what_to_watch_flutter/features/home/home_screen.dart';
-import 'package:what_to_watch_flutter/features/sign_in/sign_in_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:what_to_watch_flutter/features/splash/splash_screen.dart';
+import 'package:what_to_watch_flutter/features/sign_in/sign_in_screen.dart';
+import 'package:what_to_watch_flutter/features/home/home_screen.dart';
 
 class Router {
   static const splashScreen = '/';

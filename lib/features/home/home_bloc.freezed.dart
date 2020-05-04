@@ -12,9 +12,10 @@ T _$identity<T>(T value) => value;
 class _$BlocStateTearOff {
   const _$BlocStateTearOff();
 
-  _BlocState call(bool isLoading) {
+  _BlocState call(bool isLoading, List<Movie> movies) {
     return _BlocState(
       isLoading,
+      movies,
     );
   }
 }
@@ -24,6 +25,7 @@ const $BlocState = _$BlocStateTearOff();
 
 mixin _$BlocState {
   bool get isLoading;
+  List<Movie> get movies;
 
   $BlocStateCopyWith<BlocState> get copyWith;
 }
@@ -31,7 +33,7 @@ mixin _$BlocState {
 abstract class $BlocStateCopyWith<$Res> {
   factory $BlocStateCopyWith(BlocState value, $Res Function(BlocState) then) =
       _$BlocStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<Movie> movies});
 }
 
 class _$BlocStateCopyWithImpl<$Res> implements $BlocStateCopyWith<$Res> {
@@ -44,9 +46,11 @@ class _$BlocStateCopyWithImpl<$Res> implements $BlocStateCopyWith<$Res> {
   @override
   $Res call({
     Object isLoading = freezed,
+    Object movies = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      movies: movies == freezed ? _value.movies : movies as List<Movie>,
     ));
   }
 }
@@ -56,7 +60,7 @@ abstract class _$BlocStateCopyWith<$Res> implements $BlocStateCopyWith<$Res> {
           _BlocState value, $Res Function(_BlocState) then) =
       __$BlocStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<Movie> movies});
 }
 
 class __$BlocStateCopyWithImpl<$Res> extends _$BlocStateCopyWithImpl<$Res>
@@ -70,24 +74,29 @@ class __$BlocStateCopyWithImpl<$Res> extends _$BlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object isLoading = freezed,
+    Object movies = freezed,
   }) {
     return _then(_BlocState(
       isLoading == freezed ? _value.isLoading : isLoading as bool,
+      movies == freezed ? _value.movies : movies as List<Movie>,
     ));
   }
 }
 
 class _$_BlocState extends _BlocState {
-  const _$_BlocState(this.isLoading)
+  const _$_BlocState(this.isLoading, this.movies)
       : assert(isLoading != null),
+        assert(movies != null),
         super._();
 
   @override
   final bool isLoading;
+  @override
+  final List<Movie> movies;
 
   @override
   String toString() {
-    return 'BlocState(isLoading: $isLoading)';
+    return 'BlocState(isLoading: $isLoading, movies: $movies)';
   }
 
   @override
@@ -96,12 +105,16 @@ class _$_BlocState extends _BlocState {
         (other is _BlocState &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.movies, movies) ||
+                const DeepCollectionEquality().equals(other.movies, movies)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isLoading);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(movies);
 
   @override
   _$BlocStateCopyWith<_BlocState> get copyWith =>
@@ -110,10 +123,12 @@ class _$_BlocState extends _BlocState {
 
 abstract class _BlocState extends BlocState {
   const _BlocState._() : super._();
-  const factory _BlocState(bool isLoading) = _$_BlocState;
+  const factory _BlocState(bool isLoading, List<Movie> movies) = _$_BlocState;
 
   @override
   bool get isLoading;
+  @override
+  List<Movie> get movies;
   @override
   _$BlocStateCopyWith<_BlocState> get copyWith;
 }
@@ -121,8 +136,8 @@ abstract class _BlocState extends BlocState {
 class _$BlocEventTearOff {
   const _$BlocEventTearOff();
 
-  Click click() {
-    return const Click();
+  OnInit onInit() {
+    return const OnInit();
   }
 
   SignOut signOut() {
@@ -136,23 +151,23 @@ const $BlocEvent = _$BlocEventTearOff();
 mixin _$BlocEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result click(),
+    @required Result onInit(),
     @required Result signOut(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result click(),
+    Result onInit(),
     Result signOut(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result click(Click value),
+    @required Result onInit(OnInit value),
     @required Result signOut(SignOut value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result click(Click value),
+    Result onInit(OnInit value),
     Result signOut(SignOut value),
     @required Result orElse(),
   });
@@ -171,31 +186,31 @@ class _$BlocEventCopyWithImpl<$Res> implements $BlocEventCopyWith<$Res> {
   final $Res Function(BlocEvent) _then;
 }
 
-abstract class $ClickCopyWith<$Res> {
-  factory $ClickCopyWith(Click value, $Res Function(Click) then) =
-      _$ClickCopyWithImpl<$Res>;
+abstract class $OnInitCopyWith<$Res> {
+  factory $OnInitCopyWith(OnInit value, $Res Function(OnInit) then) =
+      _$OnInitCopyWithImpl<$Res>;
 }
 
-class _$ClickCopyWithImpl<$Res> extends _$BlocEventCopyWithImpl<$Res>
-    implements $ClickCopyWith<$Res> {
-  _$ClickCopyWithImpl(Click _value, $Res Function(Click) _then)
-      : super(_value, (v) => _then(v as Click));
+class _$OnInitCopyWithImpl<$Res> extends _$BlocEventCopyWithImpl<$Res>
+    implements $OnInitCopyWith<$Res> {
+  _$OnInitCopyWithImpl(OnInit _value, $Res Function(OnInit) _then)
+      : super(_value, (v) => _then(v as OnInit));
 
   @override
-  Click get _value => super._value as Click;
+  OnInit get _value => super._value as OnInit;
 }
 
-class _$Click implements Click {
-  const _$Click();
+class _$OnInit implements OnInit {
+  const _$OnInit();
 
   @override
   String toString() {
-    return 'BlocEvent.click()';
+    return 'BlocEvent.onInit()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Click);
+    return identical(this, other) || (other is OnInit);
   }
 
   @override
@@ -204,24 +219,24 @@ class _$Click implements Click {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result click(),
+    @required Result onInit(),
     @required Result signOut(),
   }) {
-    assert(click != null);
+    assert(onInit != null);
     assert(signOut != null);
-    return click();
+    return onInit();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result click(),
+    Result onInit(),
     Result signOut(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (click != null) {
-      return click();
+    if (onInit != null) {
+      return onInit();
     }
     return orElse();
   }
@@ -229,31 +244,31 @@ class _$Click implements Click {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result click(Click value),
+    @required Result onInit(OnInit value),
     @required Result signOut(SignOut value),
   }) {
-    assert(click != null);
+    assert(onInit != null);
     assert(signOut != null);
-    return click(this);
+    return onInit(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result click(Click value),
+    Result onInit(OnInit value),
     Result signOut(SignOut value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (click != null) {
-      return click(this);
+    if (onInit != null) {
+      return onInit(this);
     }
     return orElse();
   }
 }
 
-abstract class Click implements BlocEvent {
-  const factory Click() = _$Click;
+abstract class OnInit implements BlocEvent {
+  const factory OnInit() = _$OnInit;
 }
 
 abstract class $SignOutCopyWith<$Res> {
@@ -289,10 +304,10 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result click(),
+    @required Result onInit(),
     @required Result signOut(),
   }) {
-    assert(click != null);
+    assert(onInit != null);
     assert(signOut != null);
     return signOut();
   }
@@ -300,7 +315,7 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result click(),
+    Result onInit(),
     Result signOut(),
     @required Result orElse(),
   }) {
@@ -314,10 +329,10 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result click(Click value),
+    @required Result onInit(OnInit value),
     @required Result signOut(SignOut value),
   }) {
-    assert(click != null);
+    assert(onInit != null);
     assert(signOut != null);
     return signOut(this);
   }
@@ -325,7 +340,7 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result click(Click value),
+    Result onInit(OnInit value),
     Result signOut(SignOut value),
     @required Result orElse(),
   }) {
