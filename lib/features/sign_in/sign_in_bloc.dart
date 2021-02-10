@@ -11,10 +11,7 @@ part 'sign_in_bloc.freezed.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final AuthRepository _authRepository;
 
-  SignInBloc(this._authRepository);
-
-  @override
-  SignInState get initialState => SignInState.init();
+  SignInBloc(this._authRepository) : super(SignInState.init());
 
   @override
   Stream<SignInState> mapEventToState(SignInEvent event) {

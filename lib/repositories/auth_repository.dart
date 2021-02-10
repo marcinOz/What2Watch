@@ -64,8 +64,9 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<AppError, Unit>> signOut() {
-    return _firebaseAuth.signOut();
+  Future<Either<AppError, Unit>> signOut() async {
+    await _firebaseAuth.signOut();
+    return right(unit);
   }
 }
 

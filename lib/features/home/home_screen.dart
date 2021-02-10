@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getBody(BuildContext context) => BlocBuilder<HomeBloc, BlocState>(
-        bloc: _homeBloc,
+        cubit: _homeBloc,
         builder: (context, state) => Center(
           child: Stack(
             children: <Widget>[

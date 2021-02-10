@@ -11,10 +11,8 @@ class HomeBloc extends Bloc<BlocEvent, BlocState> {
   final AuthRepository _authRepository;
   final MovieRepository _movieRepository;
 
-  HomeBloc(this._authRepository, this._movieRepository);
-
-  @override
-  BlocState get initialState => BlocState.init();
+  HomeBloc(this._authRepository, this._movieRepository)
+      : super(BlocState.init());
 
   @override
   Stream<BlocState> mapEventToState(BlocEvent event) {
@@ -26,7 +24,8 @@ class HomeBloc extends Bloc<BlocEvent, BlocState> {
 
   Stream<BlocState> _onInit() async* {
     yield state.copyWith(isLoading: true);
-    final result = await _movieRepository.getMovieDiscover(page: 1); // TODO: Handle Errors
+    final result =
+        await _movieRepository.getMovieDiscover(page: 1); // TODO: Handle Errors
     yield state.copyWith(isLoading: false, movies: result.movies);
   }
 

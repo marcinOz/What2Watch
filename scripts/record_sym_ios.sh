@@ -1,0 +1,1 @@
+xcrun simctl io booted recordVideo appVideo.mov

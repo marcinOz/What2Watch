@@ -13,10 +13,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc(
     this._authRepository,
     this._movieRepository,
-  );
-
-  @override
-  SplashState get initialState => SplashState();
+  ) : super(SplashState());
 
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) =>

@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:get_it/get_it.dart';
+import 'package:what_to_watch_flutter/api/dio/dio_factory.dart';
+import 'package:what_to_watch_flutter/api/dio/dio_factory_dev.dart';
+import 'package:what_to_watch_flutter/api/dio/dio_factory_prod.dart';
+import 'package:what_to_watch_flutter/api/movies/movies_api_service_factory.dart';
+import 'package:what_to_watch_flutter/data/images/images_config_data_store.dart';
 // **************************************************************************
 // InjectableConfigGenerator
 // **************************************************************************
 
 import 'package:what_to_watch_flutter/repositories/auth_repository.dart';
-import 'package:what_to_watch_flutter/api/dio/dio_factory_prod.dart';
-import 'package:what_to_watch_flutter/api/dio/dio_factory.dart';
-import 'package:what_to_watch_flutter/api/dio/dio_factory_dev.dart';
-import 'package:what_to_watch_flutter/api/movies/movies_api_service_factory.dart';
-import 'package:what_to_watch_flutter/data/images/images_config_data_store.dart';
 import 'package:what_to_watch_flutter/repositories/movies_repository.dart';
-import 'package:get_it/get_it.dart';
 
 void $initGetIt(GetIt g, {String environment}) {
   //Eager singletons must be registered in the right order
@@ -30,9 +30,9 @@ void $initGetIt(GetIt g, {String environment}) {
   if (environment == 'dev') {
     g.registerSingleton<DioFactory>(DioFactoryDev());
   }
+  g.registerSingleton<ImagesConfigDataStore>(ImagesConfigDataStore());
   g.registerSingleton<MoviesApiServiceFactory>(
       MoviesApiServiceFactory(g<DioFactory>()));
-  g.registerSingleton<ImagesConfigDataStore>(ImagesConfigDataStore());
   g.registerSingleton<MovieRepository>(MoviesRepositoryImpl(
       g<MoviesApiServiceFactory>(), g<ImagesConfigDataStore>()));
 }

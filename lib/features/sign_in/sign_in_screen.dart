@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(S.of(context).signIn)),
       body: BlocConsumer<SignInBloc, SignInState>(
-        bloc: _signInBloc,
+        cubit: _signInBloc,
         builder: (context, state) => _content(context, state),
         listener: (BuildContext context, SignInState state) {
           if (state.dialogError != null) {
@@ -95,8 +95,8 @@ class _SignInScreenState extends State<SignInScreen> {
         alignment: AlignmentDirectional.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: AppButton(
-            text: S.of(context).signIn,
+          child: RaisedButton(
+            child: Text(S.of(context).signIn),
             onPressed: () {
               _signInBloc.add(SignInEvent.signInByEmail());
             },

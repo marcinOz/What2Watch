@@ -9,7 +9,7 @@ part of 'movie_api_service.dart';
 class _MoviesApiService implements MoviesApiService {
   _MoviesApiService(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??= 'https://api.themoviedb.org/3';
+    baseUrl ??= 'https://api.themoviedb.org/3';
   }
 
   final Dio _dio;
@@ -17,13 +17,12 @@ class _MoviesApiService implements MoviesApiService {
   String baseUrl;
 
   @override
-  getConfiguration(apiKey) async {
+  Future<Configuration> getConfiguration(apiKey) async {
     ArgumentError.checkNotNull(apiKey, 'apiKey');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{'api_key': apiKey};
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _data = <String, dynamic>{};
-    final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/configuration',
+    final _result = await _dio.request<Map<String, dynamic>>('/configuration',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -32,16 +31,16 @@ class _MoviesApiService implements MoviesApiService {
             baseUrl: baseUrl),
         data: _data);
     final value = Configuration.fromJson(_result.data);
-    return Future.value(value);
+    return value;
   }
 
   @override
-  getLanguages(apiKey) async {
+  Future<List<Language>> getLanguages(apiKey) async {
     ArgumentError.checkNotNull(apiKey, 'apiKey');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{'api_key': apiKey};
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _data = <String, dynamic>{};
-    final Response<List<dynamic>> _result = await _dio.request(
+    final _result = await _dio.request<List<dynamic>>(
         '/configuration/languages',
         queryParameters: queryParameters,
         options: RequestOptions(
@@ -53,18 +52,17 @@ class _MoviesApiService implements MoviesApiService {
     var value = _result.data
         .map((dynamic i) => Language.fromJson(i as Map<String, dynamic>))
         .toList();
-    return Future.value(value);
+    return value;
   }
 
   @override
-  getMovieDetailsById(movieId, apiKey) async {
+  Future<MovieDetails> getMovieDetailsById(movieId, apiKey) async {
     ArgumentError.checkNotNull(movieId, 'movieId');
     ArgumentError.checkNotNull(apiKey, 'apiKey');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{'api_key': apiKey};
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _data = <String, dynamic>{};
-    final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/movie/$movieId',
+    final _result = await _dio.request<Map<String, dynamic>>('/movie/$movieId',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -73,23 +71,23 @@ class _MoviesApiService implements MoviesApiService {
             baseUrl: baseUrl),
         data: _data);
     final value = MovieDetails.fromJson(_result.data);
-    return Future.value(value);
+    return value;
   }
 
   @override
-  getMovieDiscover(apiKey, page, {includeAdult = false}) async {
+  Future<MovieDiscoveryResponse> getMovieDiscover(apiKey, page,
+      {includeAdult = false}) async {
     ArgumentError.checkNotNull(apiKey, 'apiKey');
     ArgumentError.checkNotNull(page, 'page');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      'api_key': apiKey,
-      'page': page,
-      'include_adult': includeAdult
+      r'api_key': apiKey,
+      r'page': page,
+      r'include_adult': includeAdult
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/discover/movie',
+    final _result = await _dio.request<Map<String, dynamic>>('/discover/movie',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -98,6 +96,6 @@ class _MoviesApiService implements MoviesApiService {
             baseUrl: baseUrl),
         data: _data);
     final value = MovieDiscoveryResponse.fromJson(_result.data);
-    return Future.value(value);
+    return value;
   }
 }
